@@ -1,18 +1,26 @@
-export class Welcome {
 import 'bootstrap';
 import 'bootstrap/css/bootstrap.css!';
 
-    heading = 'Wassup dude ?';
-    firstName = 'John';
-    lastName = 'Joe';
+export class App {
 
-    get fullName()
-    {
-      return `${this.firstName} ${this.lastName}`;
-    }
+	configureRouter(config, router)
+	{
+		config.title = 'Lawl';
+		config.map([
+			{
+				route: ['', 'welcome'],
+				moduleId: './welcome',
+				nav: true,
+				title:'Welcome'
+			},
+			{
+				route: 'imgur',
+				moduleId: 'imgur/imgur',
+				nav: true,
+				title: 'Imgur Page'
+			}
+		]);
 
-    welcome()
-    {
-      alert(`Welcome, ${this.fullName} !`);
-    }
+		this.router = router;
+	}
 }
