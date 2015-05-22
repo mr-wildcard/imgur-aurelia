@@ -1,4 +1,6 @@
 export class Welcome {
+import 'bootstrap';
+import 'bootstrap/css/bootstrap.css!';
 
     heading = 'Wassup dude ?';
     firstName = 'John';
