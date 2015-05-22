@@ -1,3 +1,12 @@
 <template>
-	Salut Flickr ! :)
+
+	<br>
+	
+	<section if.bind="authenticated">
+		Hello ${imgurProfil.name}
+	</section>
+
+	<section if.bind="!authenticated">
+		<a href="${authURL}" class="btn btn-primary">S'identifier sur Imgur</a>
+	</section>
 </template>
