@@ -13,6 +13,13 @@ export class Imgur
 	images = [];
 	imgurProfil = {};
 
+	static inject = [HttpClient];
+
+	constructor(http)
+	{
+		this.http = http;
+	}
+
 	activate(options)
 	{
 		if (!this.token)
@@ -22,8 +29,20 @@ export class Imgur
 
 		if (this.authenticated)
 		{
-			// console.log(options.account_username);
+			let client = new HttpClient()
+				.configure( x => {
+					x.withBaseUrl('https://api.imgur.com/3')
+					x.withHeader('Authorization', 'Bearer ' + options.access_token);
+				});
+
+			//let imagesData = yield client.get('https://api.imgur.com/3/gallery/hot/viral/0.json');
+
 			this.imgurProfil.name = options.account_username;
+
+			client.get('/gallery/hot/viral/0.json').then(data => {
+				this.imgElements = JSON.parse(data.response).data;
+			})
+
 			// access_token=b66b1c24341c32a6b70272dcf3e69e14eb1881c6
 			// expires_in=3600
 			// token_type=bearer
