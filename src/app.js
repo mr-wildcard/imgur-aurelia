@@ -14,7 +14,7 @@ export class App {
 				title:'Welcome'
 			},
 			{
-				route: 'imgur*',
+				route: ['imgur', 'imgur*'],
 				moduleId: 'imgur/imgur',
 				nav: true,
 				title: 'Imgur Page'
